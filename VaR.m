@@ -1,10 +1,15 @@
 clear all;
 clc;
 
-N = 20;  % 股票数
-n = 10;  % 迭代天数
-RS = 200 * randn(n, N);  % 投资回报
-S = 50 * rand(n, N);  % 股票价格
+[all_data, all_flag] = xlsread('changeRatio/Category_50_ChangeRatio.xls');
+[all_data1, all_flag1] = xlsread('closeprice/Category_50ClosePrice.xls');
+RS = all_data';
+S = all_data1';
+
+N = size(RS, 2);  % 股票数
+n = size(RS, 1);  % 迭代天数
+%RS = 200 * randn(n, N);  % 投资回报
+%S = 50 * rand(n, N);  % 股票价格
 portfolio = zeros(n, N);  % 投资策略
 A = 10000000;  % 初始投资金额
 
@@ -12,7 +17,7 @@ k = 1;  % 迭代次数
 
 this_lambda = 1;  % 解参数
 mu = 1000;  % 惩罚因子
-c = 10;  % 期望回报  %该值的设定很重要
+c = 1;  % 期望回报  %该值的设定很重要
 alpha = 0.95;  % 置信水平
 
 rho_k = 1e-5;  % 近似度参数rho初始值
