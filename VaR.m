@@ -17,14 +17,14 @@ k = 1;  % 迭代次数
 
 this_lambda = 1;  % 解参数
 mu = 1000;  % 惩罚因子
-c = 1;  % 期望回报  %该值的设定很重要
+c = 0.3;  % 期望回报  %该值的设定很重要
 alpha = 0.95;  % 置信水平
 
 rho_k = 1e-5;  % 近似度参数rho初始值
 
 pre_weights = rand(1, N);
 weights = pre_weights / sum(pre_weights);  % 初始各股权重
-beta = -0.5;  % beta初始值
+beta = -0.3;  % beta初始值
 
 % 整个过程的值均保留
 all_rho = zeros(n, 1);
@@ -125,7 +125,7 @@ while (abs(gamma_k - kappa_k) > 1e-40  && k <= n)
     %fprintf('%f', H_lambda2);
     
     k = k + 1;
-    rho_k = 3 * rho_k;
+    rho_k = 2 * rho_k;
     
     gamma_k = sqrt(2 / rho_k + 1 / this_lambda);
     kappa_k = 1 / this_lambda / gamma_k;
